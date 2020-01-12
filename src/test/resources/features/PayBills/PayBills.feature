@@ -13,7 +13,7 @@ Feature: Bill pay operations
     Given the user is on the home page
     And the user clicks on login button
 
-
+  @Functional
   Scenario Outline: Pay operations with no data for date and amount
     Given the user is logged in
     And the user navigates to Pay Bills tab
@@ -32,7 +32,7 @@ Feature: Bill pay operations
       | null   | 2020-03-08 | Please fill out this field. |
 
 
-
+  @Smoke
   Scenario: Successful bill pay operations
     Given the user is logged in
     And the user navigates to Pay Bills tab

@@ -1,3 +1,4 @@
+@Regression
 Feature: checking the account activities
 
   Account Activity page should have the title Zero – Account Activity.
@@ -10,7 +11,7 @@ Feature: checking the account activities
     Given the user is on the home page
     And the user clicks on login button
 
-
+  @Smoke @Functional
   Scenario: Account activity drop down menu options
     Given the user is logged in
     And the user navigates to Account Activity tab
@@ -19,8 +20,8 @@ Feature: checking the account activities
     Then Account drop down has the following options:
       | Savings | Checking | Loan | Credit Card | Brokerage |
 
-
-  Scenario: Account activiy Table header
+  @Functional
+  Scenario: Account activity Table header
     Given the user is logged in
     And the user navigates to Account Activity tab
     Then "Zero - Account Activity" page is displayed
