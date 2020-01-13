@@ -1,13 +1,20 @@
 package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.ZeroBankPayBillsPage;
-import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.Driver;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.eo.Se;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class PayBillsStepDefinitions {
 
@@ -53,7 +60,7 @@ public class PayBillsStepDefinitions {
         System.out.println(payBillsPage.errorMessage());
         System.out.println(string);
 
-        Assert.assertEquals(string,payBillsPage.errorMessage());
+        Assert.assertEquals(string, payBillsPage.errorMessage());
         // below line checks validation, if imput bot is empty return false displays messages
 //        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 //        Boolean is_valid = (Boolean)js.executeScript("return arguments[0].checkValidity();", payBillsPage.amount);
@@ -72,6 +79,66 @@ public class PayBillsStepDefinitions {
     @Then("{string} is not displayed")
     public void isNotDisplayed(String message) {
 
-        Assert.assertTrue("The payment was successfully submitted. must not be displayed",!payBillsPage.alert.isDisplayed());
+        Assert.assertTrue("The payment was successfully submitted. must not be displayed", !payBillsPage.alert.isDisplayed());
+    }
+
+    @Given("Add New Payee tab")
+    public void addNewPayeeTab() {
+        payBillsPage.addNewPayee.click();
+    }
+
+    @And("creates new payee using following information")
+    public void createsNewPayeeUsingFollowingInformation(Map<String, String> map) {
+        payBillsPage.payeeNameInput.sendKeys(map.get("Payee Name"));
+        payBillsPage.payeeAddressInput.sendKeys(map.get("Payee Address"));
+        payBillsPage.payeeAccountInput.sendKeys(map.get("Account"));
+        payBillsPage.payeeDetailsInput.sendKeys(map.get("Payee details"));
+
+
+    }
+
+    @And("clicks add")
+    public void clicksAdd() {
+        payBillsPage.addButton.click();
+    }
+
+    @Then("message {string} should be displayed")
+    public void messageShouldBeDisplayed(String message) {
+        Assert.assertEquals(payBillsPage.newPayeeConfirmationMessage.getText(), message);
+    }
+
+    @Given("the user accesses the Purchase foreign currency cash tab")
+    public void theUserAccessesThePurchaseForeignCurrencyCashTab() {
+        payBillsPage.purchaseForeignCurrencyTab.click();
+    }
+
+    @Then("following currencies should be available")
+    public void followingCurrenciesShouldBeAvailable(DataTable dataTable) {
+        Select select=new Select(payBillsPage.currencyDropDown);
+        List<WebElement> allSelectedOptions = select.getOptions();
+        List<String> selectedOptionsString=new ArrayList<>();
+        for(WebElement element:allSelectedOptions){
+            selectedOptionsString.add(element.getText());
+        }
+
+        List<String> listofExpectedCurrency=dataTable.asList();
+        System.out.println(selectedOptionsString);
+        System.out.println(listofExpectedCurrency);
+        Assert.assertTrue(selectedOptionsString.containsAll(listofExpectedCurrency));
+
+    }
+
+    @When("user tries to calculate cost without (selecting a currency)/(entering a value)")
+    public void userTriesToCalculateCostWithoutSelectingACurrency() {
+        payBillsPage.calculateCostsButton.click();
+    }
+
+
+    @Then("error popup message {string} is displayed")
+    public void errorPopupMessagePleaseEnsureThatYouHaveFilledAllTheRequiredFieldsWithValidValuesIsDisplayed(String expected) {
+        String actual = Driver.getDriver().switchTo().alert().getText();
+        Assert.assertEquals(expected,actual);
+        Driver.getDriver().switchTo().alert().accept();
     }
 }
+
