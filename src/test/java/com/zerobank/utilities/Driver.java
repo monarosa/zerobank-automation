@@ -42,11 +42,7 @@ public class Driver {
 
                 default:
                     throw new RuntimeException("browser type is not configured correctly in config file");
-
-
             }
-
-
         }
         return driver;
     }

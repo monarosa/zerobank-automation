@@ -6,7 +6,7 @@ Feature: Purchase Foreign Currency
     And the user clicks on login button
     Given the user is logged in
     And the user navigates to Pay Bills tab
-  @Smoke @Functional
+  @Functional
   Scenario: Available currencies
     Given the user accesses the Purchase foreign currency cash tab
     Then following currencies should be available

@@ -5,7 +5,7 @@ Feature: Add new payee under pay bills
     Given the user is on the home page
     And the user clicks on login button
     Given the user is logged in
-  @Smoke @Functional
+ @Functional
   Scenario: Add a new payee
     Given the user navigates to Pay Bills tab
     Given Add New Payee tab

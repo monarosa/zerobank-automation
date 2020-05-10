@@ -11,7 +11,7 @@ Feature: checking the account activities
     Given the user is on the home page
     And the user clicks on login button
 
-  @Smoke @Functional
+   @Functional
   Scenario: Account activity drop down menu options
     Given the user is logged in
     And the user navigates to Account Activity tab

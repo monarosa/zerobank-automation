@@ -9,10 +9,10 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"html:target/default-cucumber-reports",
                 "json:target/cucumber.json"},
-        features = "src/test/resources/features",
+        features = {"src/test/resources/features","src/test/resources/HrApp"},
         glue = "com/zerobank/stepdefinitions",
-        dryRun = false,
-        tags = "@Smoke, @Functional, @Regression"
+        dryRun = true,
+        tags = "@Smoke or @Functional or @Regression or @data"
 )
-public class CukesRunner {
+public class CukesRunner{
 }

@@ -32,7 +32,7 @@ Feature: Bill pay operations
       | null   | 2020-03-08 | Please fill out this field. |
 
 
-  @Smoke
+
   Scenario: Successful bill pay operations
     Given the user is logged in
     And the user navigates to Pay Bills tab

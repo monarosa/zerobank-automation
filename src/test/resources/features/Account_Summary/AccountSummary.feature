@@ -10,7 +10,7 @@ Feature: Account summary
     Given the user is on the home page
     And the user clicks on login button
 
-  @Smoke
+
   Scenario: Account types
     Given the user is logged in
     Then  "Zero - Account Summary" page is displayed

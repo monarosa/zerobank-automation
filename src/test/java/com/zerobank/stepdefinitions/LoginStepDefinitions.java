@@ -4,8 +4,12 @@ import com.zerobank.pages.ZeroBankHomePage;
 import com.zerobank.pages.ZeroBankLoginPage;
 import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.interactions.Actions;
+
 
 public class LoginStepDefinitions {
     ZeroBankLoginPage loginPage = new ZeroBankLoginPage();
@@ -14,7 +18,6 @@ public class LoginStepDefinitions {
     @Given("the user is on the home page")
     public void the_user_is_on_the_home_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
-
     }
 
     @Given("the user clicks on login button")
@@ -27,6 +30,10 @@ public class LoginStepDefinitions {
         loginPage.username.sendKeys(username);
         loginPage.password.sendKeys(password);
         loginPage.signIn.click();
+       Actions actions = new Actions(Driver.getDriver());
+       actions.doubleClick().build().perform();
+
+
     }
 
     @Then("{string} page is displayed")

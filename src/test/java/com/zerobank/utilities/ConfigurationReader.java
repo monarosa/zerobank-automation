@@ -6,15 +6,18 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigurationReader {
+
     private static Properties confige;
-    static{
+static
+   {
 
         try {
             FileInputStream inputStream=new FileInputStream("configuration.properties");
             confige= new Properties();
             confige.load(inputStream);
+            System.out.println("loaded configuration.properties file!");
         } catch (IOException e) {
-            System.out.println("vFailed to load configuration.properties file!");
+            System.out.println("Failed to load configuration.properties file!");
             e.printStackTrace();
         }
 

@@ -1,7 +1,5 @@
 package com.zerobank.stepdefinitions;
 
-
-import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.After;
@@ -16,10 +14,11 @@ public class Hooks {
 
     @Before
     public void setUp(){
+        System.out.println("test starts");
         WebDriver driver= Driver.getDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
+        System.out.println("browser opens");
 
     }
 

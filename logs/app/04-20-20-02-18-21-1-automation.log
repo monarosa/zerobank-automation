@@ -1,0 +1,4 @@
+20.04.2020 02:18:21 INFO  Log4jDemo:10 - This is infot log step
+20.04.2020 02:18:21 WARN  Log4jDemo:11 - This is a warning
+20.04.2020 02:18:21 DEBUG Log4jDemo:12 - This is a debug massage
+20.04.2020 02:18:21 ERROR Log4jDemo:13 - This is an error
